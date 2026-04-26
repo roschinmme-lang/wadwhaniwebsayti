@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactChecker | Venture Viability Analysis</title>
+    <style>
+        /* CSS Variables for Consistency */
+        :root {
+            --primary-color: #b31b1b; /* Deep Red */
+            --primary-hover: #8f1515;
+            --bg-color: #f8f9fa;
+            --surface-color: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.1);
+            --shadow-hover: 0 12px 24px rgba(179, 27, 27, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        p { margin-bottom: 1rem; color: var(--text-muted); }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--surface-color);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Layout Structure */
+        main { margin-top: 80px; padding: 2rem 5%; }
+        section { margin-bottom: 4rem; padding-top: 2rem; }
+
+        /* Hero Section with Floating Animation */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ffe6e6 100%);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero h1 { font-size: 3rem; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+        .card {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--surface-color);
+            background: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* Highlight Blocks */
+        .highlight-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        .highlight-box h3, .highlight-box p { color: white; }
+
+        /* Footer Custom Styles */
+        .site-footer {
+            background-color: var(--surface-color);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            max-height: 70px;
+            width: auto;
+            transition: var(--transition);
+            /* Adds a subtle lift to the logo */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .company-name {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #003366; /* Deep blue from logo */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Scroll Animations */
+        .slide-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .slide-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FactChecker</div>
+        <div class="nav-links">
+            <a href="#problem">Problem</a>
+            <a href="#analysis">Analysis</a>
+            <a href="#benefits">Benefits</a>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero slide-in">
+            <h1>Venture Viability Analysis</h1>
+            <p>STI Bacoor, Cavite, Philippines<br>Protecting users and small businesses from digital misinformation and sophisticated AI-generated deepfakes.</p>
+        </header>
+
+        <section id="problem" class="slide-in">
+            <h2>Problem Statement & Context</h2>
+            <div class="grid-2">
+                <div class="highlight-box">
+                    <h3>The Problem Being Solved</h3>
+                    <p>Users and small businesses are increasingly vulnerable to digital misinformation and sophisticated AI-generated deepfakes. This information reliability gap causes poor decision-making and erodes trust in digital content.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Supporting Data</h3>
+                    <p><strong>67%</strong> of Filipinos are concerned about fake news, and <strong>65%</strong> find it difficult to spot misinformation.</p>
+                    <p><small><em>Source: Reuters Institute Digital News Report 2025</em></small></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="slide-in">
+            <h2>Problem Analysis</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Affected Stakeholders</h3>
+                    <p>Primary groups include social media users, students, content creators, and journalists.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Impact</h3>
+                    <p>Severe risks of financial loss from scams and damaged professional reputations.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌳</div>
+                    <h3>Root Causes</h3>
+                    <p>Generative AI outpacing human detection and a high friction for manual fact-checking.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Team Connect</h3>
+                    <p>As 2nd-year BSIT students, we are passionate about using Java and API integration to build a safer space.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="slide-in">
+            <h2>Solution Benefits</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Functional</h3>
+                    <p>Verify content instantly and identify deepfakes within seconds via screen-snipping.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">❤️</div>
+                    <h3>Emotional</h3>
+                    <p>Gain peace of mind while browsing and feel empowered to protect your community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Social</h3>
+                    <p>Earn community trust by debunking fakes and fostering a resilient environment.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Macro</h3>
+                    <p>Strengthens democratic integrity by reducing viral misinformation.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <img src="newinnova.png" alt="New Innova Logo" class="footer-logo">
+            <div class="company-name">New Innova</div>
+            <p class="copyright">© 2026 New Innova. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll animations
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const slideElements = document.querySelectorAll('.slide-in');
+            slideElements.forEach(el => observer.observe(el));
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
