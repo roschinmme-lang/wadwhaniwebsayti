@@ -62,7 +62,7 @@
         main { margin-top: 80px; padding: 2rem 5%; }
         section { margin-bottom: 4rem; padding-top: 2rem; }
 
-        /* Hero Section with Floating Animation */
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 6rem 2rem;
@@ -73,25 +73,25 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
         }
 
-        .hero h1 { font-size: 3rem; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
 
         /* Grids & Cards */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
 
         .card {
             background: var(--surface-color);
-            padding: 2rem;
+            padding: 2.5rem 1.5rem;
             border-radius: 12px;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
             border-top: 4px solid transparent;
+            text-align: center;
         }
 
         .card:hover {
@@ -101,26 +101,21 @@
         }
 
         .card-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--surface-color);
             background: var(--primary-color);
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            margin-bottom: 1rem;
+            margin: 0 auto 1.5rem auto;
         }
 
-        /* Highlight Blocks */
-        .highlight-box {
-            background: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-        }
-        .highlight-box h3, .highlight-box p { color: white; }
+        /* Creator Specific Styles */
+        .creator-name { font-weight: bold; font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .creator-role { font-size: 0.85rem; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
 
         /* Footer Custom Styles */
         .site-footer {
@@ -128,52 +123,39 @@
             padding: 4rem 5%;
             text-align: center;
             border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
+            margin-top: 4rem;
         }
 
         .footer-logo {
-            max-height: 70px;
+            max-height: 80px;
             width: auto;
-            transition: var(--transition);
-            /* Adds a subtle lift to the logo */
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
         }
 
-        .footer-logo:hover {
-            transform: scale(1.05);
-        }
+        .footer-logo:hover { transform: scale(1.05); }
 
         .company-name {
             font-weight: 800;
-            font-size: 1.2rem;
-            color: #003366; /* Deep blue from logo */
-            letter-spacing: 2px;
+            font-size: 1.4rem;
+            color: #003366; /* Deep Blue theme */
+            letter-spacing: 3px;
             text-transform: uppercase;
-        }
-
-        .copyright {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            margin-bottom: 0.5rem;
         }
 
         /* Scroll Animations */
         .slide-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .slide-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .nav-links { display: none; }
         }
     </style>
@@ -185,6 +167,7 @@
         <div class="nav-links">
             <a href="#problem">Problem</a>
             <a href="#analysis">Analysis</a>
+            <a href="#creators">Creators</a>
             <a href="#benefits">Benefits</a>
         </div>
     </nav>
@@ -192,20 +175,20 @@
     <main>
         <header class="hero slide-in">
             <h1>Venture Viability Analysis</h1>
-            <p>STI Bacoor, Cavite, Philippines<br>Protecting users and small businesses from digital misinformation and sophisticated AI-generated deepfakes.</p>
+            <p><strong>STI Bacoor, Cavite, Philippines</strong><br>Empowering users and small businesses to detect digital misinformation and sophisticated AI-generated deepfakes instantly.</p>
         </header>
 
         <section id="problem" class="slide-in">
             <h2>Problem Statement & Context</h2>
             <div class="grid-2">
-                <div class="highlight-box">
-                    <h3>The Problem Being Solved</h3>
-                    <p>Users and small businesses are increasingly vulnerable to digital misinformation and sophisticated AI-generated deepfakes. This information reliability gap causes poor decision-making and erodes trust in digital content.</p>
+                <div style="background: var(--primary-color); color: white; padding: 2.5rem; border-radius: 12px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="color: white;">The Problem</h3>
+                    <p style="color: white; font-size: 1.1rem;">Digital users are increasingly vulnerable to sophisticated AI-generated deepfakes. This information reliability gap causes poor decision-making and erodes community trust in digital media.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">📊</div>
                     <h3>Supporting Data</h3>
-                    <p><strong>67%</strong> of Filipinos are concerned about fake news, and <strong>65%</strong> find it difficult to spot misinformation.</p>
+                    <p><strong>67%</strong> of Filipinos express deep concern regarding fake news, and <strong>65%</strong> struggle to identify misinformation accurately.</p>
                     <p><small><em>Source: Reuters Institute Digital News Report 2025</em></small></p>
                 </div>
             </div>
@@ -216,23 +199,49 @@
             <div class="grid-4">
                 <div class="card">
                     <div class="card-icon">👥</div>
-                    <h3>Affected Stakeholders</h3>
-                    <p>Primary groups include social media users, students, content creators, and journalists.</p>
+                    <h3>Stakeholders</h3>
+                    <p>Primarily social media users, students, content creators, and local journalists.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">📈</div>
                     <h3>Impact</h3>
-                    <p>Severe risks of financial loss from scams and damaged professional reputations.</p>
+                    <p>Risk of financial loss via scams and severe damage to professional reputations.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌳</div>
                     <h3>Root Causes</h3>
-                    <p>Generative AI outpacing human detection and a high friction for manual fact-checking.</p>
+                    <p>Generative AI tools outperforming human detection and high friction in current verification methods.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🤝</div>
                     <h3>Team Connect</h3>
-                    <p>As 2nd-year BSIT students, we are passionate about using Java and API integration to build a safer space.</p>
+                    <p>As 2nd-year BSIT students, we aim to bridge the gap between AI tech and user safety.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="creators" class="slide-in">
+            <h2>Meet the Creators</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">👨‍💻</div>
+                    <div class="creator-name">Eduardo</div>
+                    <div class="creator-role">BSIT Student</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👨‍💻</div>
+                    <div class="creator-name">Francis</div>
+                    <div class="creator-role">BSIT Student</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👨‍💻</div>
+                    <div class="creator-name">Justin</div>
+                    <div class="creator-role">BSIT Student</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👨‍💻</div>
+                    <div class="creator-name">Roschin</div>
+                    <div class="creator-role">BSIT Student</div>
                 </div>
             </div>
         </section>
@@ -243,22 +252,22 @@
                 <div class="card">
                     <div class="card-icon">⚙️</div>
                     <h3>Functional</h3>
-                    <p>Verify content instantly and identify deepfakes within seconds via screen-snipping.</p>
+                    <p>Verify content instantly and identify deepfakes within seconds via simple screen-snipping.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">❤️</div>
                     <h3>Emotional</h3>
-                    <p>Gain peace of mind while browsing and feel empowered to protect your community.</p>
+                    <p>Gain peace of mind while browsing and feel empowered to protect your digital circle.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌐</div>
                     <h3>Social</h3>
-                    <p>Earn community trust by debunking fakes and fostering a resilient environment.</p>
+                    <p>Earn community trust by debunking fakes and fostering a resilient online environment.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌍</div>
                     <h3>Macro</h3>
-                    <p>Strengthens democratic integrity by reducing viral misinformation.</p>
+                    <p>Strengthens democratic integrity and economic security by reducing viral misinformation.</p>
                 </div>
             </div>
         </section>
@@ -268,14 +277,15 @@
         <div class="footer-content">
             <img src="newinnova.png" alt="New Innova Logo" class="footer-logo">
             <div class="company-name">New Innova</div>
-            <p class="copyright">© 2026 New Innova. All rights reserved.</p>
+            <p style="font-size: 0.9rem; color: #666;">Empowering Digital Truth through Innovation</p>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 1rem;">© 2026 New Innova. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Scroll animations
-            const observerOptions = { threshold: 0.1 };
+            // Scroll Animation Observer
+            const observerOptions = { threshold: 0.15 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -287,13 +297,17 @@
             const slideElements = document.querySelectorAll('.slide-in');
             slideElements.forEach(el => observer.observe(el));
 
-            // Smooth Scrolling
+            // Smooth Scroll for Navigation Links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
